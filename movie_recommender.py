@@ -20,18 +20,18 @@ def get_movie_details(movie_id):
     response.raise_for_status()
     return response.json()
 
-# def get_similar_movies(movie_id):
-#     """Get similar movies to a given movie."""
-#     url = f"{BASE_URL}/movie/{movie_id}/similar"
-#     params = {"api_key": API_KEY}
-#     response = requests.get(url, params=params)
-#     response.raise_for_status()
-#     results = response.json().get("results", [])
-#     return results[:5] 
+def get_similar_movies(movie_id):
+    """Get similar movies to a given movie."""
+    url = f"{BASE_URL}/movie/{movie_id}/similar"
+    params = {"api_key": API_KEY}
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    results = response.json().get("results", [])
+    return results[:5] 
 
-# def main():
-#     print("🎥 Welcome to Movie Night Recommender 🎥")
-#     movie_name = input("Enter a movie you like: ")
+def main():
+    print("🎥 Welcome to Movie Night Recommender 🎥")
+    movie_name = input("Enter a movie you like: ")
 
     try:
         search_results = search_movie(movie_name)
@@ -54,20 +54,20 @@ def get_movie_details(movie_id):
         print(f"⭐ Rating: {movie_details.get('vote_average', 'N/A')}")
         print(f"📝 Overview: {movie_details.get('overview', 'No overview available.')}\n")
 
-        # similar_movies = get_similar_movies(movie_id)
+        similar_movies = get_similar_movies(movie_id)
 
-        # if not similar_movies:
-        #     print("😔 No similar movies found.")
-        # else:
-        #     print("🎯 Recommended for you:")
-        #     for idx, movie in enumerate(similar_movies, 1):
-        #         title = movie['title']
-        #         rating = movie.get('vote_average', 'N/A')
-        #         year = movie.get('release_date', 'N/A')[:4]
-        #         print(f"{idx}. {title} ({year}) - ⭐ {rating}")
+        if not similar_movies:
+            print("😔 No similar movies found.")
+        else:
+            print("🎯 Recommended for you:")
+            for idx, movie in enumerate(similar_movies, 1):
+                title = movie['title']
+                rating = movie.get('vote_average', 'N/A')
+                year = movie.get('release_date', 'N/A')[:4]
+                print(f"{idx}. {title} ({year}) - ⭐ {rating}")
 
     except Exception as e:
         print(f"⚠️ Error: {e}")
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
