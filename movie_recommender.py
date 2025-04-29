@@ -20,18 +20,18 @@ def get_movie_details(movie_id):
     response.raise_for_status()
     return response.json()
 
-# def get_similar_movies(movie_id):
-#     """Get similar movies to a given movie."""
-#     url = f"{BASE_URL}/movie/{movie_id}/similar"
-#     params = {"api_key": API_KEY}
-#     response = requests.get(url, params=params)
-#     response.raise_for_status()
-#     results = response.json().get("results", [])
-#     return results[:5] 
+def get_similar_movies(movie_id):
+    """Get similar movies to a given movie."""
+    url = f"{BASE_URL}/movie/{movie_id}/similar"
+    params = {"api_key": API_KEY}
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    results = response.json().get("results", [])
+    return results[:5] 
 
-# def main():
-#     print("🎥 Welcome to Movie Night Recommender 🎥")
-#     movie_name = input("Enter a movie you like: ")
+def main():
+    print("🎥 Welcome to Movie Night Recommender 🎥")
+    movie_name = input("Enter a movie you like: ")
 
     try:
         search_results = search_movie(movie_name)
