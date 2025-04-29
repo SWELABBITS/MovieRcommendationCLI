@@ -1,16 +1,16 @@
-# import requests
+import requests
 
-# API_KEY = "8b64db22c2b931ae420f0d2e1eea73a2"
-# BASE_URL = "https://api.themoviedb.org/3"
+API_KEY = "8b64db22c2b931ae420f0d2e1eea73a2"
+BASE_URL = "https://api.themoviedb.org/3"
 
-# def search_movie(movie_name):
-#     """Search for a movie by name."""
-#     url = f"{BASE_URL}/search/movie"
-#     params = {"api_key": API_KEY, "query": movie_name}
-#     response = requests.get(url, params=params)
-#     response.raise_for_status()
-#     results = response.json().get("results", [])
-#     return results
+def search_movie(movie_name):
+    """Search for a movie by name."""
+    url = f"{BASE_URL}/search/movie"
+    params = {"api_key": API_KEY, "query": movie_name}
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    results = response.json().get("results", [])
+    return results
 
 # def get_movie_details(movie_id):
 #     """Get details of a movie by ID."""
